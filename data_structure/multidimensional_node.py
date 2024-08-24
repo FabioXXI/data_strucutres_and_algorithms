@@ -1,6 +1,6 @@
 from typing import Optional, NoReturn, Any
 
-class Node:
+class MultidimensionalNode:
     total_instances = 0
     total_active_nodes = 0
 
@@ -24,32 +24,32 @@ class Node:
     def get_total_active_nodes(cls) -> int:
         return cls.total_active_nodes
 
-    def __init__(self, value: Any = None, point_to: Optional['Node'] | list[Optional['Node']] = None, pointed_from: Optional['Node'] | list[Optional['Node']] = None) -> NoReturn:
+    def __init__(self, value: Any = None, point_to: Optional['MultidimensionalNode'] | list[Optional['MultidimensionalNode']] = None, pointed_from: Optional['MultidimensionalNode'] | list[Optional['MultidimensionalNode']] = None) -> NoReturn:
         self.value = value
         self.point_to = point_to
         self.pointed_from = pointed_from
-        Node.increase_active_nodes()
-        Node.increase_instances()
+        MultidimensionalNode.increase_active_nodes()
+        MultidimensionalNode.increase_instances()
 
     def put_value(self, value: Any) -> NoReturn:
         self.value = value
 
-    def put_point_to(self, point_to: Optional['Node']) -> NoReturn:
+    def put_point_to(self, point_to: Optional['MultidimensionalNode']) -> NoReturn:
         self.point_to = point_to
 
-    def put_pointed_from(self, pointed_from: Optional['Node']) -> NoReturn:
+    def put_pointed_from(self, pointed_from: Optional['MultidimensionalNode']) -> NoReturn:
         self.pointed_from = pointed_from
 
     def get_value(self) -> Any:
         return self.value
 
-    def get_point_to(self) -> Optional['Node'] | list[Optional['Node']]:
+    def get_point_to(self) -> Optional['MultidimensionalNode'] | list[Optional['MultidimensionalNode']]:
         return self.point_to
 
-    def get_pointed_from(self) -> Optional['Node'] | list[Optional['Node']]:
+    def get_pointed_from(self) -> Optional['MultidimensionalNode'] | list[Optional['MultidimensionalNode']]:
         return self.pointed_from
 
-    def append_point_to(self, node: Optional['Node']) -> NoReturn:
+    def append_point_to(self, node: Optional['MultidimensionalNode']) -> NoReturn:
         if self.point_to:
             if not(type(self.point_to) is list):
                 self.point_to = [self.point_to]
@@ -57,7 +57,7 @@ class Node:
             return
         self.point_to = [node]
 
-    def append_pointed_from(self, node: Optional['Node']) -> NoReturn:
+    def append_pointed_from(self, node: Optional['MultidimensionalNode']) -> NoReturn:
         if self.pointed_from:
             if not(type(self.pointed_from) is list):
                 self.pointed_from = [self.pointed_from]
@@ -115,8 +115,8 @@ class Node:
         self.value = None
 
     def __repr__(self) -> str:
-        return f"Node({self.get_value()!r}, {self.get_point_to()!r}, {self.get_pointed_from()!r})"
+        return f"MultidimensionalNode({self.get_value()!r}, {self.get_point_to()!r}, {self.get_pointed_from()!r})"
 
     def __del__(self) -> NoReturn:
         self.del_point_to_and_pointed_from()
-        Node.decrease_active_nodes()
+        MultidimensionalNode.decrease_active_nodes()
