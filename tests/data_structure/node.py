@@ -19,5 +19,12 @@ class NodeTest(unittest.TestCase):
         n2.put_prev(n1)
         self.assertEqual(n1, n2.get_prev())
 
+    def test_copy(self) -> NoReturn:
+        node = Node(10)
+        n1 = node.get_copy(deepcp=False)
+        n2 = node.get_copy()
+        self.assertEqual(n1, node)
+        self.assertNotEqual(n2, node)
+
 if __name__ == "__main__":
     NodeTest()

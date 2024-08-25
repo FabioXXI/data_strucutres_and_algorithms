@@ -1,4 +1,5 @@
 from typing import NoReturn, Any, Optional
+from copy import deepcopy
 
 class Node:
     total_instances = 0
@@ -65,6 +66,11 @@ class Node:
     def clean_node(self) -> NoReturn:
         self.del_next_and_prev()
         self.del_value()
+
+    def get_copy(self, deepcp: bool = True) -> Optional['Node']:
+        if deepcp:
+            return deepcopy(self)
+        return self
 
     def __del__(self) -> NoReturn:
         self.clean_node()

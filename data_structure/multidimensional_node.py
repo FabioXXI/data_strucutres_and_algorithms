@@ -1,4 +1,5 @@
 from typing import Optional, NoReturn, Any
+from copy import deepcopy
 
 class MultidimensionalNode:
     total_instances = 0
@@ -113,6 +114,11 @@ class MultidimensionalNode:
 
     def del_value(self) -> NoReturn:
         self.value = None
+
+    def get_copy(self, deepcp: bool = True) -> Optional['MultidimensionalNode']:
+        if deepcp:
+            return deepcopy(self)
+        return self
 
     def __repr__(self) -> str:
         return f"MultidimensionalNode({self.get_value()!r}, {self.get_point_to()!r}, {self.get_pointed_from()!r})"

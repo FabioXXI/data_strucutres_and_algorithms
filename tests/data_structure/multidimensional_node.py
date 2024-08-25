@@ -1,5 +1,5 @@
 import unittest
-from algorithms.multidimensional_node import MultidimensionalNode
+from data_structure.multidimensional_node import MultidimensionalNode
 from typing import NoReturn
 
 class MultidimensionalNodeTest(unittest.TestCase):
@@ -46,6 +46,13 @@ class MultidimensionalNodeTest(unittest.TestCase):
         for n in nodes:
             node.append_pointed_from(n)
         self.assertEqual(node.pop_pointed_from(), nodes[-1])
+
+    def test_copy(self) -> NoReturn:
+        node = MultidimensionalNode(10)
+        n1 = node.get_copy(deepcp=False)
+        n2 = node.get_copy()
+        self.assertEqual(n1, node)
+        self.assertNotEqual(n2, node)
         
 if __name__ == "__main__":
     MultidimensionalNodeTest()
