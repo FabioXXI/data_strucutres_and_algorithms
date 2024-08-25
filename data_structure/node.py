@@ -24,7 +24,7 @@ class Node:
     def get_total_active_nodes(cls) -> int:
         return cls.total_active_nodes
 
-    def __init__(self, value: Any, next: Optional['Node'], prev: Optional['Node']) -> NoReturn:
+    def __init__(self, value: Any = None, next: Optional['Node'] = None, prev: Optional['Node'] = None) -> NoReturn:
         self.value = value
         self.next = next
         self.prev = prev
